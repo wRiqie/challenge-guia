@@ -25,6 +25,7 @@ class PaginableModel<T> {
 
   bool get isNotEmpty => items.isNotEmpty;
   bool get isEmpty => items.isEmpty;
+  int get length => items.length;
 
   int indexOf(T value) {
     return items.indexOf(value);

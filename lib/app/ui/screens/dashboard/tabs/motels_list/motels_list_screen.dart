@@ -121,13 +121,16 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                       ),
                       SizedBox(
                         height: 800,
-                        child: PageView(
+                        child: PageView.builder(
                           controller: PageController(
                             viewportFraction: .9,
                             initialPage: 0,
                           ),
                           scrollDirection: Axis.horizontal,
-                          children: e.suites.map((e) {
+                          itemCount: e.suites.length ?? 0,
+                          itemBuilder: (context, index) {
+                            var suite = e.suites[index];
+
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 6),
@@ -138,18 +141,17 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                                     padding: EdgeInsets.all(8),
                                     decoration: BoxDecoration(
                                         color: colorScheme.surface,
-                                        borderRadius:
-                                            BorderRadius.circular(8)),
+                                        borderRadius: BorderRadius.circular(8)),
                                     child: Column(
                                       spacing: 4,
                                       children: [
-                                        Image.network(e.photosUrls.first),
+                                        Image.network(suite.photosUrls.first),
                                         Text(
-                                          e.name,
+                                          suite.name,
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Visibility(
-                                          visible: e.amount <= 2,
+                                          visible: suite.amount <= 2,
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -161,7 +163,7 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                                                 color: colorScheme.primary,
                                               ),
                                               Text(
-                                                'só mais ${e.amount} pelo app',
+                                                'só mais ${suite.amount} pelo app',
                                                 style: TextStyle(
                                                   color: colorScheme.primary,
                                                   fontSize: 12,
@@ -178,14 +180,13 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                                     padding: EdgeInsets.all(8),
                                     decoration: BoxDecoration(
                                         color: colorScheme.surface,
-                                        borderRadius:
-                                            BorderRadius.circular(8)),
+                                        borderRadius: BorderRadius.circular(8)),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       spacing: 8,
                                       children: [
-                                        ...e.categoryItems.take(5).map((e) {
+                                        ...suite.categoryItems.take(5).map((e) {
                                           return Container(
                                             decoration: BoxDecoration(
                                               color: Colors.black
@@ -220,7 +221,7 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                                       ],
                                     ),
                                   ),
-                                  ...e.periods.map(
+                                  ...suite.periods.map(
                                     (e) => Container(
                                       padding: EdgeInsets.all(18),
                                       decoration: BoxDecoration(
@@ -252,12 +253,11 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                                                         padding: EdgeInsets
                                                             .symmetric(
                                                                 vertical: 2,
-                                                                horizontal:
-                                                                    6),
+                                                                horizontal: 6),
                                                         decoration:
                                                             BoxDecoration(
-                                                                border: Border
-                                                                    .all(
+                                                                border:
+                                                                    Border.all(
                                                                   width: 1,
                                                                   color: Colors
                                                                       .green,
@@ -270,8 +270,7 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                                                           '${(e.discount ?? 0).toStringAsFixed(0)}% off',
                                                           style: TextStyle(
                                                             fontSize: 12,
-                                                            color:
-                                                                Colors.green,
+                                                            color: Colors.green,
                                                           ),
                                                         ),
                                                       ),
@@ -289,8 +288,7 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                                                                 e.baseValue),
                                                         style: TextStyle(
                                                           fontSize: 18,
-                                                          color:
-                                                              Colors.black38,
+                                                          color: Colors.black38,
                                                           decoration:
                                                               TextDecoration
                                                                   .lineThrough,
@@ -305,9 +303,8 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      AppHelpers
-                                                          .formatCurrency(
-                                                              e.totalValue),
+                                                      AppHelpers.formatCurrency(
+                                                          e.totalValue),
                                                       style: TextStyle(
                                                           fontSize: 18),
                                                     ),
@@ -328,7 +325,7 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                                 ],
                               ),
                             );
-                          }).toList(),
+                          },
                         ),
                       ),
                       SizedBox(
