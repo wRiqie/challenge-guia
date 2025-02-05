@@ -25,16 +25,16 @@ class SuiteModel {
 
   factory SuiteModel.fromMap(Map<String, dynamic> map) {
     return SuiteModel(
-      name: map['name'] ?? '',
-      amount: map['amount']?.toInt() ?? 0,
-      showAvailableAmount: map['showAvailableAmount'] ?? false,
-      photosUrls: List<String>.from(map['photosUrls']),
+      name: map['nome'],
+      amount: map['qtd'],
+      showAvailableAmount: map['exibirQtdDisponiveis'],
+      photosUrls: List<String>.from(map['fotos']),
       items:
-          List<ItemModel>.from(map['items']?.map((x) => ItemModel.fromMap(x))),
+          List<ItemModel>.from(map['itens']?.map((x) => ItemModel.fromMap(x))),
       categoryItems: List<CategoryItemModel>.from(
-          map['categoryItems']?.map((x) => CategoryItemModel.fromMap(x))),
+          map['categoriaItens']?.map((x) => CategoryItemModel.fromMap(x))),
       periods: List<PeriodModel>.from(
-          map['periods']?.map((x) => PeriodModel.fromMap(x))),
+          map['periodos']?.map((x) => PeriodModel.fromMap(x))),
     );
   }
 

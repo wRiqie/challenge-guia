@@ -7,7 +7,7 @@ class ItemModel {
 
   factory ItemModel.fromMap(Map<String, dynamic> map) {
     return ItemModel(
-      name: map['name'],
+      name: map['nome'],
     );
   }
 

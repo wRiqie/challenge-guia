@@ -48,7 +48,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                 ),
                 Expanded(
                   child: SizedBox(
-                    height: 40,
+                    height: 35,
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       child: Material(

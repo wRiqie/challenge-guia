@@ -5,7 +5,7 @@ class PeriodModel {
   final num baseValue;
   final num totalValue;
   final bool hasCortesy;
-  final num discount;
+  final num? discount;
 
   PeriodModel({
     required this.formattedTime,
@@ -17,11 +17,11 @@ class PeriodModel {
 
   factory PeriodModel.fromMap(Map<String, dynamic> map) {
     return PeriodModel(
-      formattedTime: map['formattedTime'],
-      baseValue: map['baseValue'],
-      totalValue: map['totalValue'],
-      hasCortesy: map['hasCortesy'],
-      discount: map['discount'],
+      formattedTime: map['tempoFormatado'],
+      baseValue: map['valor'],
+      totalValue: map['valorTotal'],
+      hasCortesy: map['temCortesia'],
+      discount: map['desconto']?['desconto'],
     );
   }
 

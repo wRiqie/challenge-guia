@@ -11,8 +11,8 @@ class CategoryItemModel {
 
   factory CategoryItemModel.fromMap(Map<String, dynamic> map) {
     return CategoryItemModel(
-      name: map['name'],
-      iconUrl: map['iconUrl'],
+      name: map['nome'],
+      iconUrl: map['icone'],
     );
   }
 

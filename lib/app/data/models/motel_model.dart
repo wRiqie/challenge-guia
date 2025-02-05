@@ -21,11 +21,11 @@ class MotelModel {
 
   factory MotelModel.fromMap(Map<String, dynamic> map) {
     return MotelModel(
-      name: map['name'] ?? '',
-      logoUrl: map['logoUrl'] ?? '',
-      address: map['address'] ?? '',
-      distance: map['distance'] ?? 0,
-      favoriteAmount: map['favoriteAmount']?.toInt() ?? 0,
+      name: map['fantasia'] ?? '',
+      logoUrl: map['logo'] ?? '',
+      address: map['bairro'] ?? '',
+      distance: map['distancia'] ?? 0,
+      favoriteAmount: map['qtdFavoritos'],
       suites: List<SuiteModel>.from(map['suites']?.map((x) => SuiteModel.fromMap(x))),
     );
   }
