@@ -54,6 +54,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                       child: Material(
                         color: colorScheme.onSurface.withValues(alpha: .3),
                         child: TabBar(
+                          isScrollable: false,
                           controller: _tabController,
                           indicatorSize: TabBarIndicatorSize.tab,
                           dividerColor: Colors.transparent,
@@ -124,6 +125,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   Padding(
                     padding: const EdgeInsets.only(top: 18),
                     child: TabBarView(
+                      physics: NeverScrollableScrollPhysics(),
                       controller: _tabController,
                       children: [
                         MotelsList(),
