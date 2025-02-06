@@ -5,28 +5,4 @@ abstract class HttpService {
     Map<String, dynamic>? queryParams,
     Map<String, String>? headers,
   });
-
-  Future<dynamic> post(
-    String path, {
-    bool useBaseUrl = true,
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParams,
-    Map<String, String>? headers,
-  });
-
-  Future<dynamic> delete(
-    String path, {
-    bool useBaseUrl = true,
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParams,
-    Map<String, String>? headers,
-  });
-
-  Future<dynamic> put(
-    String path, {
-    bool useBaseUrl = true,
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParams,
-    Map<String, String>? headers,
-  });
 }
