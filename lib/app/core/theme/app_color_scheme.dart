@@ -1,9 +1,8 @@
-
 part of 'app_theme.dart';
 
 final _appColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Colors.red.shade600,
+  primary: const Color(0xFFE53935),
   onPrimary: Colors.white,
   secondary: Colors.blue,
   onSecondary: Colors.white,

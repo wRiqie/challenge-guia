@@ -7,6 +7,7 @@ import 'package:challenge_guia/app/routes/app_pages.dart';
 import 'package:challenge_guia/app/ui/screens/dashboard/tabs/motels_list/delegates/filters_delegate.dart';
 import 'package:challenge_guia/app/ui/screens/suite_items/suite_items.dart';
 import 'package:challenge_guia/app/ui/widgets/category_chip_widget.dart';
+import 'package:challenge_guia/app/ui/widgets/empty_placeholder_widget.dart';
 import 'package:challenge_guia/app/ui/widgets/motel_card_widget.dart';
 import 'package:challenge_guia/app/ui/widgets/skeleton_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -177,6 +178,14 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                             ),
                           )
                           .toList(),
+                    ),
+                  ),
+                ),
+              if (state.status.isError)
+                SliverFillRemaining(
+                  child: Center(
+                    child: ErrorPlaceholderWidget(
+                      onReload: _loadMotels,
                     ),
                   ),
                 ),
