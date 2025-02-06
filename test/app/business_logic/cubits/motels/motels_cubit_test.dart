@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:challenge_guia/app/business_logic/cubits/motels/motels_cubit.dart';
 import 'package:challenge_guia/app/business_logic/cubits/motels/motels_state.dart';
 import 'package:challenge_guia/app/data/models/default_response_model.dart';
@@ -6,23 +7,22 @@ import 'package:challenge_guia/app/data/models/motel_model.dart';
 import 'package:challenge_guia/app/data/models/paginable_model.dart';
 import 'package:challenge_guia/app/data/repositories/motels_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:bloc_test/bloc_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 // Mock do repositório
-class MockMotelsRepository extends Mock implements MotelsRepository {}
+class MotelsRepositoryMock extends Mock implements MotelsRepository {}
 
 void main() {
-  late MotelsCubit cubit;
-  late MockMotelsRepository mockRepository;
+  late MotelsCubit motelsCubit;
+  late MotelsRepositoryMock motelsRepository;
 
   setUp(() {
-    mockRepository = MockMotelsRepository();
-    cubit = MotelsCubit(mockRepository);
+    motelsRepository = MotelsRepositoryMock();
+    motelsCubit = MotelsCubit(motelsRepository);
   });
 
   tearDown(() {
-    cubit.close();
+    motelsCubit.close();
   });
 
   group('MotelsCubit', () {
@@ -48,9 +48,9 @@ void main() {
     blocTest<MotelsCubit, MotelsState>(
       'Emite [loading, success] quando getAllPaginated() retorna dados com sucesso',
       build: () {
-        when(() => mockRepository.getAllPaginated())
+        when(() => motelsRepository.getAllPaginated())
             .thenAnswer((_) async => DefaultResponseModel(data: mockMotels));
-        return cubit;
+        return motelsCubit;
       },
       act: (cubit) => cubit.getAllPaginated(),
       expect: () => [
@@ -65,9 +65,9 @@ void main() {
     blocTest<MotelsCubit, MotelsState>(
       'Emite [loading, error] quando getAllPaginated() falha',
       build: () {
-        when(() => mockRepository.getAllPaginated())
+        when(() => motelsRepository.getAllPaginated())
             .thenAnswer((_) async => DefaultResponseModel(error: errorMock));
-        return cubit;
+        return motelsCubit;
       },
       act: (cubit) => cubit.getAllPaginated(),
       expect: () => [
