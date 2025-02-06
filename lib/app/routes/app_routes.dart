@@ -4,4 +4,5 @@ class AppRoutes {
   AppRoutes._();
 
   static const dashboard = '/';
+  static const suiteImages = '/suite-images';
 }

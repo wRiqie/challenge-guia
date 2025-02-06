@@ -2,6 +2,7 @@ import 'package:challenge_guia/app/business_logic/cubits/motels/motels_cubit.dar
 import 'package:challenge_guia/app/business_logic/cubits/motels/motels_state.dart';
 import 'package:challenge_guia/app/core/helpers/transition_helper.dart';
 import 'package:challenge_guia/app/data/models/args/suite_items_args.dart';
+import 'package:challenge_guia/app/routes/app_pages.dart';
 import 'package:challenge_guia/app/ui/screens/suite_items/suite_items.dart';
 import 'package:challenge_guia/app/ui/widgets/motel_card_widget.dart';
 import 'package:challenge_guia/app/ui/widgets/skeleton_card_widget.dart';
@@ -91,6 +92,8 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                             ),
                           );
                         },
+                        onTapImages: () =>
+                            Navigator.pushNamed(context, AppRoutes.suiteImages),
                       ),
                     )
                     .toList(),

@@ -123,19 +123,23 @@ class MotelCardWidget extends StatelessWidget {
                     child: Column(
                       spacing: 8,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: Image.network(
-                            suite.photosUrls.first,
-                            loadingBuilder: (BuildContext context, Widget child,
-                                ImageChunkEvent? loadingProgress) {
-                              if (loadingProgress == null) {
-                                return child;
-                              }
-                              return SkeletonCardWidget(
-                                height: size.width * .65,
-                              );
-                            },
+                        GestureDetector(
+                          onTap: onTapImages,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: Image.network(
+                              suite.photosUrls.first,
+                              loadingBuilder: (BuildContext context,
+                                  Widget child,
+                                  ImageChunkEvent? loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return child;
+                                }
+                                return SkeletonCardWidget(
+                                  height: size.width * .65,
+                                );
+                              },
+                            ),
                           ),
                         ),
                         Text(
