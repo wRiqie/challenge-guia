@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class ItemModel {
   final String name;
 
@@ -10,7 +8,4 @@ class ItemModel {
       name: map['nome'],
     );
   }
-
-  factory ItemModel.fromJson(String source) =>
-      ItemModel.fromMap(json.decode(source));
 }

@@ -2,8 +2,6 @@ import '../models/default_response_model.dart';
 import '../models/error_model.dart';
 
 class ExecuteService {
-  ExecuteService._();
-
   static Future<DefaultResponseModel<T>> tryExecuteAsync<T>(
       Future<T?> Function() execute) async {
     try {

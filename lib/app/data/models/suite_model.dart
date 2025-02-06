@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:challenge_guia/app/data/models/category_item_model.dart';
 import 'package:challenge_guia/app/data/models/item_model.dart';
 import 'package:challenge_guia/app/data/models/period_model.dart';
@@ -37,7 +35,4 @@ class SuiteModel {
           map['periodos']?.map((x) => PeriodModel.fromMap(x))),
     );
   }
-
-  factory SuiteModel.fromJson(String source) =>
-      SuiteModel.fromMap(json.decode(source));
 }

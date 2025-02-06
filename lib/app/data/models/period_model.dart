@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class PeriodModel {
   final String formattedTime;
   final num baseValue;
@@ -24,6 +22,4 @@ class PeriodModel {
       discount: map['desconto']?['desconto'],
     );
   }
-
-  factory PeriodModel.fromJson(String source) => PeriodModel.fromMap(json.decode(source));
 }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:challenge_guia/app/data/models/suite_model.dart';
 
 class MotelModel {
@@ -26,9 +24,8 @@ class MotelModel {
       address: map['bairro'] ?? '',
       distance: map['distancia'] ?? 0,
       favoriteAmount: map['qtdFavoritos'],
-      suites: List<SuiteModel>.from(map['suites']?.map((x) => SuiteModel.fromMap(x))),
+      suites: List<SuiteModel>.from(
+          map['suites']?.map((x) => SuiteModel.fromMap(x))),
     );
   }
-
-  factory MotelModel.fromJson(String source) => MotelModel.fromMap(json.decode(source));
 }

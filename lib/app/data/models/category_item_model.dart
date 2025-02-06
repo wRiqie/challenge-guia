@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class CategoryItemModel {
   final String name;
   final String iconUrl;
@@ -15,7 +13,4 @@ class CategoryItemModel {
       iconUrl: map['icone'],
     );
   }
-
-  factory CategoryItemModel.fromJson(String source) =>
-      CategoryItemModel.fromMap(json.decode(source));
 }
