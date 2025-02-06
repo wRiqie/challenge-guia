@@ -104,10 +104,7 @@ class MotelCardWidget extends StatelessWidget {
           height: 20,
         ),
         ExpandablePageViewWidget(
-          controller: PageController(
-            viewportFraction: .9,
-            initialPage: 0,
-          ),
+          viewportFraction: .9,
           scrollDirection: Axis.horizontal,
           children: motel.suites.map((suite) {
             return Padding(

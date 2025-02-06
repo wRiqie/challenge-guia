@@ -187,16 +187,13 @@ class _DashboardScreenState extends State<DashboardScreen>
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 18),
-                    child: TabBarView(
-                      physics: NeverScrollableScrollPhysics(),
-                      controller: _tabController,
-                      children: [
-                        MotelsList(),
-                        Center(child: Text('Listagem "ir outro dia"')),
-                      ],
-                    ),
+                  TabBarView(
+                    physics: NeverScrollableScrollPhysics(),
+                    controller: _tabController,
+                    children: [
+                      MotelsList(),
+                      Center(child: Text('Listagem "ir outro dia"')),
+                    ],
                   ),
                 ],
               ),
