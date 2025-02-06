@@ -34,6 +34,14 @@ void main() {
       expect(result.length, 1);
       expect(result.items.first.name, "Motel Le Nid");
     });
+
+    test('Deve lançar uma Exception quando a requisição falhar', () async {
+      when(() => httpService.get(any()))
+          .thenThrow(Exception('Erro de conexão'));
+
+      expect(
+          () => motelsDataSource.getAllPaginated(), throwsA(isA<Exception>()));
+    });
   });
 }
 
