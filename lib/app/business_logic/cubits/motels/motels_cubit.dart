@@ -24,4 +24,11 @@ class MotelsCubit extends Cubit<MotelsState> {
       ));
     }
   }
+
+  @override
+  void emit(MotelsState state) {
+    // Para evitar erros ao dar dispose na tela e emitir [state] em seguida
+    if(isClosed) return;    
+    super.emit(state);
+  }
 }
