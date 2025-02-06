@@ -20,7 +20,7 @@ Desafio realizado com o intuito de clonar uma tela do aplicativo "Guia de moteis
 ## 📱 Aplicativo
 
 <video width="100%" controls>
-  <source src=".github/videos/example.mov" type="video/mp4">
+  <source src=".github/videos/example.mov">
 </video>
 
 ## 🛠️ Como rodar
