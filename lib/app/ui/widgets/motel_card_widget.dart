@@ -122,12 +122,13 @@ class MotelCardWidget extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            if(onTapImages != null) onTapImages!(suite.photosUrls);
+                            if (onTapImages != null)
+                              onTapImages!(suite.photosUrls);
                           },
                           child: Stack(
                             children: [
                               SizedBox(
-                                height: size.width * .65,
+                                height: size.width * .6,
                               ),
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(4),

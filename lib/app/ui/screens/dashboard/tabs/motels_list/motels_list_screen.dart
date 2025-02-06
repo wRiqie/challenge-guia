@@ -53,105 +53,106 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
 
     return BlocBuilder<MotelsCubit, MotelsState>(
       builder: (context, state) {
-        return CustomScrollView(
-          slivers: [
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: FiltersDelegate(
-                ColoredBox(
-                  color: colorScheme.surfaceContainer,
-                  child: Column(
-                    spacing: 10,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            spacing: 6,
-                            children: [
-                              CategoryChipWidget(
-                                icon: Icons.tune,
-                                label: 'filtros',
-                                badgeCount: selectedCategories.length,
-                              ),
-                              ...categories.map((e) {
-                                final isSelected =
-                                    selectedCategories.contains(e);
+        return RefreshIndicator(
+          onRefresh: () async => _loadMotels(),
+          child: CustomScrollView(
+            slivers: [
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: FiltersDelegate(
+                  ColoredBox(
+                    color: colorScheme.surfaceContainer,
+                    child: Column(
+                      spacing: 10,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              spacing: 6,
+                              children: [
+                                CategoryChipWidget(
+                                  icon: Icons.tune,
+                                  label: 'filtros',
+                                  badgeCount: selectedCategories.length,
+                                ),
+                                ...categories.map((e) {
+                                  final isSelected =
+                                      selectedCategories.contains(e);
 
-                                return CategoryChipWidget(
-                                  label: e,
-                                  isSelected: isSelected,
-                                  onTap: () {
-                                    _toggleCategory(e);
-                                  },
-                                );
-                              }),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Divider(
-                        height: 1,
-                        thickness: .8,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            if (state.status.isLoading)
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    spacing: 6,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        spacing: 10,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SkeletonCardWidget(
-                            radius: BorderRadius.circular(20),
-                            width: 40,
-                            height: 40,
-                          ),
-                          Expanded(
-                            child: SkeletonCardWidget(
-                              radius: BorderRadius.circular(8),
-                              height: 80,
+                                  return CategoryChipWidget(
+                                    label: e,
+                                    isSelected: isSelected,
+                                    onTap: () {
+                                      _toggleCategory(e);
+                                    },
+                                  );
+                                }),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                      SkeletonCardWidget(
-                        radius: BorderRadius.circular(8),
-                        height: size.width * .8,
-                      ),
-                      SkeletonCardWidget(
-                        radius: BorderRadius.circular(8),
-                        height: 50,
-                      ),
-                      SkeletonCardWidget(
-                        radius: BorderRadius.circular(8),
-                        height: 70,
-                      ),
-                      SkeletonCardWidget(
-                        radius: BorderRadius.circular(8),
-                        height: 70,
-                      ),
-                    ],
+                        ),
+                        Divider(
+                          height: 1,
+                          thickness: .8,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            if (state.status.isSuccess)
-              SliverToBoxAdapter(
-                child: RefreshIndicator(
-                  onRefresh: () async => _loadMotels(),
+              if (state.status.isLoading)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
+                    child: Column(
+                      spacing: 6,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
+                          spacing: 10,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SkeletonCardWidget(
+                              radius: BorderRadius.circular(20),
+                              width: 40,
+                              height: 40,
+                            ),
+                            Expanded(
+                              child: SkeletonCardWidget(
+                                radius: BorderRadius.circular(8),
+                                height: 80,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SkeletonCardWidget(
+                          radius: BorderRadius.circular(8),
+                          height: size.width * .8,
+                        ),
+                        SkeletonCardWidget(
+                          radius: BorderRadius.circular(8),
+                          height: 50,
+                        ),
+                        SkeletonCardWidget(
+                          radius: BorderRadius.circular(8),
+                          height: 70,
+                        ),
+                        SkeletonCardWidget(
+                          radius: BorderRadius.circular(8),
+                          height: 70,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              if (state.status.isSuccess)
+                SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 14),
                     child: Column(
@@ -179,8 +180,8 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                     ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         );
       },
     );

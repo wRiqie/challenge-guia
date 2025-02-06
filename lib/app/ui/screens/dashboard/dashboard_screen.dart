@@ -187,13 +187,19 @@ class _DashboardScreenState extends State<DashboardScreen>
                       ),
                     ),
                   ),
-                  TabBarView(
-                    physics: NeverScrollableScrollPhysics(),
-                    controller: _tabController,
-                    children: [
-                      MotelsList(),
-                      Center(child: Text('Listagem "ir outro dia"')),
-                    ],
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(14),
+                      topRight: Radius.circular(14),
+                    ),
+                    child: TabBarView(
+                      physics: NeverScrollableScrollPhysics(),
+                      controller: _tabController,
+                      children: [
+                        MotelsList(),
+                        Center(child: Text('Listagem "ir outro dia"')),
+                      ],
+                    ),
                   ),
                 ],
               ),
