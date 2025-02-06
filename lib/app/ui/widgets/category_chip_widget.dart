@@ -1,13 +1,15 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-// import 'package:bad';
 
 class CategoryChipWidget extends StatelessWidget {
   final String label;
   final bool isSelected;
+  final int? badgeCount;
   final IconData? icon;
   final VoidCallback? onTap;
   const CategoryChipWidget(
       {super.key,
+      this.badgeCount,
       required this.label,
       this.isSelected = false,
       this.icon,
@@ -32,10 +34,17 @@ class CategoryChipWidget extends StatelessWidget {
           children: [
             Visibility(
               visible: icon != null,
-              child: Badge(
-                padding: EdgeInsets.all(2),
-
-                label: Text('2', style: TextStyle(fontSize: 8),),
+              child: badges.Badge(
+                badgeAnimation: badges.BadgeAnimation.scale(),
+                showBadge: badgeCount != null && badgeCount! > 0,
+                position: badges.BadgePosition.topStart(),
+                badgeContent: badgeCount != null
+                    ? Text(
+                        badgeCount!.toString(),
+                        style: TextStyle(
+                            color: colorScheme.onPrimary, fontSize: 8),
+                      )
+                    : null,
                 child: Icon(
                   icon,
                   size: 16,

@@ -76,9 +76,11 @@ class _MotelsListScreenState extends State<MotelsListScreen> {
                               CategoryChipWidget(
                                 icon: Icons.tune,
                                 label: 'filtros',
+                                badgeCount: selectedCategories.length,
                               ),
                               ...categories.map((e) {
-                                final isSelected = selectedCategories.contains(e);
+                                final isSelected =
+                                    selectedCategories.contains(e);
 
                                 return CategoryChipWidget(
                                   label: e,
