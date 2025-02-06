@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:challenge_guia/app/data/models/args/suite_images_args.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class SuiteImagesScreen extends StatefulWidget {
   const SuiteImagesScreen({super.key});
@@ -45,8 +46,29 @@ class _SuiteImagesScreenState extends State<SuiteImagesScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Wrap(
-          children: photosUrls.map((e) => Image.network(e)).toList(),
+        child: Column(
+          children: [
+            StaggeredGrid.count(
+              crossAxisCount: 2, // 2 colunas
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              children: List.generate(photosUrls.length, (index) {
+                bool isFullWidth =
+                    index % 3 == 0; // Define quais ocupam a linha toda
+                return StaggeredGridTile.count(
+                  crossAxisCellCount: isFullWidth ? 2 : 1,
+                  mainAxisCellCount: 1,
+                  child: Image.network(
+                    photosUrls[index],
+                    fit: BoxFit.cover,
+                  ),
+                );
+              }),
+            ),
+            SizedBox(
+              height: 60,
+            ),
+          ],
         ),
       ),
     );
