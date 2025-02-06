@@ -32,5 +32,9 @@ class _SizeReportingWidgetState extends State<SizeReportingWidget> {
       _oldSize = size;
       widget.onSizeChange(size);
     }
+    
+    Future.microtask(() {
+      if (mounted) setState(() {});
+    });
   }
 }

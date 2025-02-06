@@ -127,21 +127,28 @@ class MotelCardWidget extends StatelessWidget {
                           onTap: () {
                             if(onTapImages != null) onTapImages!(suite.photosUrls);
                           },
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(4),
-                            child: Image.network(
-                              suite.photosUrls.first,
-                              loadingBuilder: (BuildContext context,
-                                  Widget child,
-                                  ImageChunkEvent? loadingProgress) {
-                                if (loadingProgress == null) {
-                                  return child;
-                                }
-                                return SkeletonCardWidget(
-                                  height: size.width * .65,
-                                );
-                              },
-                            ),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: size.width * .65,
+                              ),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: Image.network(
+                                  suite.photosUrls.first,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) {
+                                      return child;
+                                    }
+                                    return SkeletonCardWidget(
+                                      height: size.width * .65,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Text(

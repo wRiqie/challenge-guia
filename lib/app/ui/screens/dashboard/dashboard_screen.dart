@@ -95,21 +95,82 @@ class _DashboardScreenState extends State<DashboardScreen>
                 ),
               ],
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'zona norte',
-                  style: TextStyle(color: colorScheme.onPrimary),
-                ),
-                Icon(
-                  Icons.expand_more,
-                  color: colorScheme.onPrimary,
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: AnimatedSwitcher(
+                duration: Duration(milliseconds: 250),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: SlideTransition(
+                      position: Tween<Offset>(
+                        begin: Offset(0, 0.5),
+                        end: Offset(0, 0),
+                      ).animate(animation),
+                      child: child,
+                    ),
+                  );
+                },
+                child: _tabController.index == 0
+                    ? Row(
+                        key: ValueKey<int>(0),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'zona norte',
+                            style: TextStyle(
+                              color: colorScheme.onPrimary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Icon(
+                            Icons.expand_more,
+                            color: colorScheme.onPrimary,
+                          ),
+                        ],
+                      )
+                    : Row(
+                        spacing: 40,
+                        key: ValueKey<int>(1),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'zona norte',
+                                style: TextStyle(
+                                  color: colorScheme.onPrimary,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Icon(
+                                Icons.expand_more,
+                                color: colorScheme.onPrimary,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.nights_stay,
+                                color: colorScheme.onPrimary,
+                              ),
+                              Text(
+                                '09 fev - 10 fev',
+                                style: TextStyle(
+                                  color: colorScheme.onPrimary,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Icon(
+                                Icons.expand_more,
+                                color: colorScheme.onPrimary,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+              ),
             ),
             SizedBox(
               height: 10,
