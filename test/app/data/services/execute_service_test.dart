@@ -4,7 +4,7 @@ import 'package:challenge_guia/app/data/services/execute_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('ExecuteService.tryExecuteAsync', () {
+  group('[ExecuteService] -> ', () {
     test(
         'Deve retornar DefaultResponseModel com os dados quando a execução for bem-sucedida',
         () async {

@@ -25,7 +25,7 @@ void main() {
     motelsCubit.close();
   });
 
-  group('MotelsCubit', () {
+  group('[MotelsCubit] -> ', () {
     final mockMotels = PaginableModel(
       items: [
         MotelModel(

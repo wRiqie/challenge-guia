@@ -21,26 +21,29 @@ void main() {
     httpService = HttpServiceImp(client: httpClientMock);
   });
 
-  test('Deve retornar Response ao chamar GET com sucesso', () async {
-    final fakeResponse = http.Response(jsonEncode({'message': 'Success'}), 200);
+  group('[HttpServiceImp] -> ', () {
+    test('Deve retornar Response ao chamar GET com sucesso', () async {
+      final fakeResponse =
+          http.Response(jsonEncode({'message': 'Success'}), 200);
 
-    when(() => httpClientMock.get(uri, headers: any(named: 'headers')))
-        .thenAnswer((_) async => fakeResponse);
+      when(() => httpClientMock.get(uri, headers: any(named: 'headers')))
+          .thenAnswer((_) async => fakeResponse);
 
-    final response = await httpService.get('/test', headers: {});
+      final response = await httpService.get('/test', headers: {});
 
-    expect(response, isA<http.Response>());
-    expect(response.statusCode, 200);
-    expect(jsonDecode(response.body)['message'], 'Success');
-  });
+      expect(response, isA<http.Response>());
+      expect(response.statusCode, 200);
+      expect(jsonDecode(response.body)['message'], 'Success');
+    });
 
-  test('Deve lançar HttpException e converter para erro adequado', () async {
-    when(() => httpClientMock.get(uri, headers: any(named: 'headers')))
-        .thenThrow(HttpException('Erro simulado'));
+    test('Deve lançar HttpException e converter para erro adequado', () async {
+      when(() => httpClientMock.get(uri, headers: any(named: 'headers')))
+          .thenThrow(HttpException('Erro simulado'));
 
-    final result = await httpService.get('/test').catchError((e) => e);
+      final result = await httpService.get('/test').catchError((e) => e);
 
-    expect(result, isA<ErrorModel>());
-    expect(result.message, equals('Erro simulado'));
+      expect(result, isA<ErrorModel>());
+      expect(result.message, equals('Erro simulado'));
+    });
   });
 }
