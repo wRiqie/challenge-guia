@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class MotelCardWidget extends StatelessWidget {
   final MotelModel motel;
-  final VoidCallback? onTapImages;
+  final Function(List<String> photosUrls)? onTapImages;
   final Function(SuiteModel suite)? onTapSuiteItems;
   const MotelCardWidget({
     super.key,
@@ -124,7 +124,9 @@ class MotelCardWidget extends StatelessWidget {
                       spacing: 8,
                       children: [
                         GestureDetector(
-                          onTap: onTapImages,
+                          onTap: () {
+                            if(onTapImages != null) onTapImages!(suite.photosUrls);
+                          },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(4),
                             child: Image.network(

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:challenge_guia/app/data/models/args/suite_images_args.dart';
 import 'package:flutter/material.dart';
 
 class SuiteImagesScreen extends StatefulWidget {
@@ -8,6 +11,22 @@ class SuiteImagesScreen extends StatefulWidget {
 }
 
 class _SuiteImagesScreenState extends State<SuiteImagesScreen> {
+  List<String> photosUrls = [];
+
+  @override
+  void initState() {
+    super.initState();
+    scheduleMicrotask(
+      () {
+        var args =
+            ModalRoute.of(context)!.settings.arguments as SuiteImagesArgs;
+        setState(() {
+          photosUrls = args.photosUrls;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +42,11 @@ class _SuiteImagesScreenState extends State<SuiteImagesScreen> {
             size: 16,
             color: Theme.of(context).colorScheme.onSurface,
           ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Wrap(
+          children: photosUrls.map((e) => Image.network(e)).toList(),
         ),
       ),
     );

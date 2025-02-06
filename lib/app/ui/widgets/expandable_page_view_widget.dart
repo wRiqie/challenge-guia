@@ -70,7 +70,6 @@ class _ExpandablePageViewWidgetState extends State<ExpandablePageViewWidget>
         (index, child) => MapEntry(
           index,
           OverflowBox(
-            //needed, so that parent won't impose its constraints on the children, thus skewing the measurement results.
             minHeight: 0,
             maxHeight: double.infinity,
             alignment: Alignment.topCenter,
