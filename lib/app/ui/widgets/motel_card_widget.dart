@@ -122,8 +122,9 @@ class MotelCardWidget extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            if (onTapImages != null)
+                            if (onTapImages != null) {
                               onTapImages!(suite.photosUrls);
+                            }
                           },
                           child: Stack(
                             children: [

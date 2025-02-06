@@ -15,7 +15,6 @@ class HttpServiceImp implements HttpService {
     String method,
     String path, {
     bool useBaseUrl = true,
-    Map<String, dynamic>? data,
     Map<String, dynamic>? queryParams,
     Map<String, String>? headers,
   }) async {
