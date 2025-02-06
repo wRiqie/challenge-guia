@@ -1,5 +1,6 @@
 import 'package:challenge_guia/app/data/models/custom_tab_model.dart';
 import 'package:challenge_guia/app/ui/screens/dashboard/tabs/motels_list/motels_list.dart';
+import 'package:challenge_guia/app/ui/widgets/custom_drawer_widget.dart';
 import 'package:challenge_guia/app/ui/widgets/tab_item_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final _scaffoldKey = GlobalKey();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   late List<CustomTabModel> tabs = [];
 
@@ -34,13 +35,16 @@ class _DashboardScreenState extends State<DashboardScreen>
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: colorScheme.primary,
+      drawer: CustomDrawerWidget(),
       body: SafeArea(
         child: Column(
           children: [
             Row(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _scaffoldKey.currentState?.openDrawer();
+                  },
                   icon: Icon(
                     Icons.menu,
                     color: colorScheme.onPrimary,
@@ -115,7 +119,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
+                      color: colorScheme.surfaceContainer,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(14),
                         topRight: Radius.circular(14),

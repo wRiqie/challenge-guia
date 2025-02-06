@@ -10,5 +10,6 @@ final _appColorScheme = ColorScheme(
   error: Colors.black54,
   onError: Colors.white,
   surface: Colors.white,
+  surfaceContainer: Colors.grey.shade100,
   onSurface: Colors.black,
 );
