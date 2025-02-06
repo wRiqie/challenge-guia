@@ -14,9 +14,9 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-
   late List<CustomTabModel> tabs = [];
+
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
